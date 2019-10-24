@@ -5,7 +5,23 @@ services:
   image: phpmyadmin/phpmyadmin
   container_name: phpmyadmin
   environment:
-   - PMA_ARBITRARY=1
+   - PMA_HOST=mysql
   restart: always
   ports:
-   - 9090:9090
+   - 9090:80
+ mysql:
+  image: mysql:5.6
+  volumes:
+   - db_data:/var/lib/mysql
+  restart: always
+  environment:
+   MYSQL_ROOT_PASSWORD: 123456
+ web:
+  image: php:7.2-apache
+  container_name: web
+  volumes:
+   - ./app:/var/www/html/
+  ports:
+   - 8080:80
+volumes:
+ db_data:
