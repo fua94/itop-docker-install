@@ -20,4 +20,12 @@ RUN yum install -y \
 	php-imap \
 	php-mysql \
 	php-mbstring
+	
+EXPOSE 80
+
+# Simple startup script to avoid some issues observed with container restart
+ADD docker_entrypoint.sh /entrypoint.sh
+RUN chmod -v +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
 
