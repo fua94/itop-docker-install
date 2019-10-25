@@ -17,7 +17,7 @@ services:
   environment:
    MYSQL_ROOT_PASSWORD: 123456
  web:
-  image: php:7.2-apache
+  build: .
   container_name: web
   volumes:
    - ./app:/var/www/html/
