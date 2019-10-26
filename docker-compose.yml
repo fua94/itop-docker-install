@@ -15,12 +15,15 @@ services:
    - db_data:/var/lib/mysql
   restart: always
   environment:
-   MYSQL_ROOT_PASSWORD: 123456
+   - MYSQL_ROOT_PASSWORD: 123456
  web:
   build: .
   container_name: web
-  volumes:
-   - ./app:/var/www/html/
+  environment:
+   - INTEGRIA_DB_HOST: mysql
+   - INTEGRIA_DB_USER: root
+   - INTEGRIA_DB_PASSWORD: 123456
+   - INTEGRIA_DB_NAME: integria
   ports:
    - 8080:80
 volumes:

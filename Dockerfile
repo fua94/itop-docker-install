@@ -11,7 +11,15 @@ RUN { \
 
 RUN yum -y update; yum clean all;
 RUN yum install -y \ 
+	git \
 	httpd \
+	cronie \
+	ntp \
+	openldap \
+	wget \
+	curl \
+	openldap \
+	mysql \
 	php \
 	php-cli \
 	php-gd \
@@ -20,8 +28,12 @@ RUN yum install -y \
 	php-imap \
 	php-mysql \
 	php-mbstring
-	
-EXPOSE 80
+
+#Clone the repo
+RUN git clone -b master https://github.com/articaST/integriaims.git /tmp/integriaims
+
+#Exposing ports for: SSH, HTTP and Tentacle
+EXPOSE 22 80 41121
 
 # Simple startup script to avoid some issues observed with container restart
 ADD docker_entrypoint.sh /entrypoint.sh
