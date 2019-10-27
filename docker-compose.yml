@@ -3,7 +3,6 @@ version: '3.7'
 services:
  phpmyadmin:
   image: phpmyadmin/phpmyadmin
-  container_name: phpmyadmin
   environment:
    - PMA_HOST=mysql
   restart: always
@@ -12,19 +11,11 @@ services:
  mysql:
   image: mysql:5.6
   volumes:
-   - db_data:/var/lib/mysql
+   - ./db_data:/var/lib/mysql
   restart: always
   environment:
-   - MYSQL_ROOT_PASSWORD: 123456
- web:
+   - MYSQL_ROOT_PASSWORD=123456
+ integria-ims:
   build: .
-  container_name: web
-  environment:
-   - INTEGRIA_DB_HOST: mysql
-   - INTEGRIA_DB_USER: root
-   - INTEGRIA_DB_PASSWORD: 123456
-   - INTEGRIA_DB_NAME: integria
   ports:
    - 8080:80
-volumes:
- db_data:

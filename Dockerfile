@@ -1,5 +1,4 @@
 FROM centos:centos6
-MAINTAINER Integria IMS Team <info@integriaims.com>
 
 RUN { \
 	echo '[EPEL]'; \
@@ -29,15 +28,4 @@ RUN yum install -y \
 	php-mysql \
 	php-mbstring
 
-#Clone the repo
-RUN git clone -b master https://github.com/articaST/integriaims.git /tmp/integriaims
-
-#Exposing ports for: SSH, HTTP and Tentacle
-EXPOSE 22 80 41121
-
-# Simple startup script to avoid some issues observed with container restart
-ADD docker_entrypoint.sh /entrypoint.sh
-RUN chmod -v +x /entrypoint.sh
-
-CMD ["/entrypoint.sh"]
-
+EXPOSE 22
