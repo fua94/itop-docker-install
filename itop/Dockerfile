@@ -22,6 +22,9 @@ RUN yum --enablerepo=remi-php72 install -y \
 
 EXPOSE 80
 
+COPY app /var/www/html/itop
+RUN chown -R apache:apache /var/www/html/itop 
+
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
 
