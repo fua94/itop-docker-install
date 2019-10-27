@@ -18,7 +18,7 @@ RUN yum --enablerepo=remi-php72 install -y \
 	php-gd \
 	php-zip \
 	php-json \
-	php-mbstring \
+	php-mbstring
 
 EXPOSE 80
 
