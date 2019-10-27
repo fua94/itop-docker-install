@@ -1,16 +1,14 @@
 FROM centos:centos6
 
-RUN { \
-	echo '[EPEL]'; \
-	echo 'name = CentOS Epel'; \
-	echo 'baseurl = http://dl.fedoraproject.org/pub/epel/6/x86_64'; \
-	echo 'enabled=1'; \
-	echo 'gpgcheck=0'; \
-} > /etc/yum.repos.d/extra_repos.repo
-
 RUN yum -y update; yum clean all;
+RUN yum install -y epel-release
+RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
 RUN yum install -y \ 
 	httpd \
+	graphviz
+	
+RUN yum --enablerepo=remi-php72 install -y \ 	
 	php \
 	php-mysql \
 	php-xml \
@@ -21,9 +19,10 @@ RUN yum install -y \
 	php-zip \
 	php-json \
 	php-mbstring \
-	graphviz
-	
-RUN systemctl enable httpd.service
 
 EXPOSE 80
+
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
+
 
