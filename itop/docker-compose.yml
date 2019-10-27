@@ -1,0 +1,7 @@
+services:
+ itop-app:
+  build: .
+  volumes:
+   - ./app:/var/www/html/itop
+  ports:
+   - 8081:80
