@@ -1,3 +1,3 @@
-/db_data
+.env
 /itop/app
-/integria/app
+/integria_ims/app
