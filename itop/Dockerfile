@@ -8,7 +8,7 @@ RUN yum install -y \
 	httpd \
 	graphviz
 	
-RUN yum --enablerepo=remi-php72 install -y \ 	
+RUN yum --enablerepo=remi-php72 install -y \
 	php \
 	php-mysql \
 	php-xml \
@@ -22,10 +22,8 @@ RUN yum --enablerepo=remi-php72 install -y \
 
 EXPOSE 80
 
-COPY app /var/www/html/itop
-RUN chown -R apache:apache /var/www/html/itop 
+RUN rm -f /var/www/html/*
+COPY app /var/www/html/
+RUN chown -R apache:apache /var/www/html/ 
 
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-
-
-
