@@ -21,9 +21,3 @@ services:
   restart: always
   ports:
    - 8080:80
- integria_ims:
-  build: ./integria_ims
-  container_name: integria_ims
-  restart: always
-  ports:
-   - 8081:80
