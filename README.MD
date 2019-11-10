@@ -5,7 +5,7 @@
 ```
 MYSQL_ROOT_PASSWORD=
 ```
-2. Clone iTop repository <https://github.com/Combodo/iTop> to itop/app:
+2. Clone iTop repository <https://github.com/Combodo/iTop> to itop/app by running into root folder:
 ```
 git clone -b master https://github.com/Combodo/iTop.git itop/app
 ```
